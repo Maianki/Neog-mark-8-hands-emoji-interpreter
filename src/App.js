@@ -1,7 +1,6 @@
 import "./styles.css";
 import React, { useState } from "react";
 
-//dictionay to store emoji's and corressponding meaninng
 const emojiDictionary = {
   "👋": "Waving Hand",
   "🤚": "Raised Back of Hand",
@@ -23,13 +22,10 @@ const emojiDictionary = {
   "✌": "Victory Hand"
 };
 
-//Create emoji array
 var emojis = Object.keys(emojiDictionary);
 
 export default function App() {
   const [userValue, setUserValue] = useState("");
-
-  //function to handle userinput and set meaning of the emoji
   function userInputHandler(event) {
     var inputMeaning = emojiDictionary[event.target.value];
     if (inputMeaning === undefined) {
@@ -38,7 +34,6 @@ export default function App() {
     setUserValue(inputMeaning);
   }
 
-  //function to handle user click and set desired value to emoji
   function emojiClickHandler(emoji) {
     setUserValue(emojiDictionary[emoji]);
   }
@@ -46,12 +41,16 @@ export default function App() {
     <div className="App">
       <h1>Hands Emoji Interpreter</h1>
       <input onChange={userInputHandler}></input>
-      <div class="user-input">{userValue}</div>
-      <div class="display-emoji">
+      <div className="user-input">{userValue}</div>
+      <div className="display-emoji">
         <ul>
           {emojis.map((emoji) => {
             return (
-              <li class="li-emoji" onClick={() => emojiClickHandler(emoji)}>
+              <li
+                className="li-emoji"
+                onClick={() => emojiClickHandler(emoji)}
+                key={emoji}
+              >
                 {emoji}
               </li>
             );
